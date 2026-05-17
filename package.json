@@ -1,0 +1,114 @@
+{
+  "name": "42header-next",
+  "displayName": "42 Next Header",
+  "description": "Insert and maintain 42 school file headers with automatic timestamp updates. Supports 37 languages, shebangs, flake8-compatible Python, and custom delimiters.",
+  "version": "1.0.0",
+  "publisher": "pruiz-ca",
+  "icon": "logo.png",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pruiz-ca/vscode-42next-header.git"
+  },
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Formatters",
+    "Education"
+  ],
+  "keywords": [
+    "42",
+    "42header",
+    "header",
+    "42school",
+    "ecole42",
+    "42next",
+    "python",
+    "flake8",
+    "shebang"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/src/extension",
+  "contributes": {
+    "configuration": {
+      "title": "42 Header",
+      "properties": {
+        "42header.username": {
+          "type": "string",
+          "description": "Username to display in headers. Falls back to system username.",
+          "scope": "resource"
+        },
+        "42header.email": {
+          "type": "string",
+          "description": "Email to display in headers. Falls back to <username>@student.42.fr.",
+          "scope": "resource"
+        },
+        "42header.languageDelimiters": {
+          "type": "object",
+          "description": "Override comment delimiters per language. Each value is a [left, right] pair of equal-length strings. Example: { \"rust\": [\"// \", \"/ /\"] }",
+          "scope": "resource",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 2,
+            "maxItems": 2
+          },
+          "default": {}
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "42header.insertHeader",
+        "title": "Insert 42 Header",
+        "when": "editorTextFocus"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "42header.insertHeader",
+        "key": "ctrl+alt+h",
+        "mac": "cmd+alt+h",
+        "when": "editorTextFocus"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "tsc -p ./",
+    "compile": "tsc -watch -p ./",
+    "typecheck": "tsc --noEmit",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "prepare": "[ -z \"$CI\" ] && git config core.hooksPath .githooks || true",
+    "build": "pnpm typecheck && pnpm test && pnpx @vscode/vsce package --allow-missing-repository",
+    "release": "pnpm build && pnpx @vscode/vsce publish",
+    "clean": "rm -rf node_modules out *.vsix"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "testMatch": [
+      "**/src/test/**/*.test.ts"
+    ],
+    "transform": {
+      "^.+\\.tsx?$": [
+        "ts-jest",
+        {
+          "tsconfig": "tsconfig.test.json"
+        }
+      ]
+    }
+  },
+  "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "@types/node": "^25.8.0",
+    "@types/vscode": "^1.85.0",
+    "jest": "^30.4.2",
+    "ts-jest": "^29.1.5",
+    "typescript": "^6.0.3"
+  }
+}
