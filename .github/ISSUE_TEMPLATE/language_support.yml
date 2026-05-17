@@ -1,0 +1,38 @@
+name: Language Support
+about: Request support for a new programming language
+title: '[Language] Support for '
+labels: ['language']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Request support for a new programming language. Please provide the VS Code language ID and the comment delimiter pair.
+  - type: input
+    id: language
+    attributes:
+      label: Language name
+      description: The name of the programming language.
+      placeholder: e.g. Zig, Ada, Fortran
+    validations:
+      required: true
+  - type: input
+    id: languageid
+    attributes:
+      label: VS Code language ID
+      description: The language ID shown in the VS Code status bar when you open a file of this type.
+      placeholder: e.g. zig, ada, fortran
+    validations:
+      required: true
+  - type: input
+    id: delimiter
+    attributes:
+      label: Comment delimiter pair
+      description: A JSON-style ["left", "right"] pair of equal-length strings.
+      placeholder: '["// ", " //"]'
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Any additional context, such as whether the delimiter is formatter-safe.

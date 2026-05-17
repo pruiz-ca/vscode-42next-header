@@ -1,0 +1,35 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "watch",
+      "type": "shell",
+      "command": "pnpm compile",
+      "isBackground": true,
+      "problemMatcher": "$tsc-watch",
+      "group": { "kind": "build", "isDefault": true },
+      "presentation": { "reveal": "silent" }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "pnpm run vscode:prepublish",
+      "problemMatcher": "$tsc",
+      "group": "build"
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "pnpm test",
+      "problemMatcher": [],
+      "group": { "kind": "test", "isDefault": true }
+    },
+    {
+      "label": "typecheck",
+      "type": "shell",
+      "command": "pnpm typecheck",
+      "problemMatcher": "$tsc",
+      "group": "build"
+    }
+  ]
+}
